@@ -1,4 +1,4 @@
-# Expressjs-mvc-mongoose-example
+# Expressjs-mvc-mongoose-handlerbars-example
 
 Using express-handlerbars, mongoose, morgan, nodemon, node-sass, and bootstrap.
 
@@ -14,6 +14,7 @@ Using express-handlerbars, mongoose, morgan, nodemon, node-sass, and bootstrap.
     Run backend
     ```sh
     # go to backend
+    npm i
     nodemon ./src/index.js
     ```
 1.  **Step 3.**
