@@ -3,6 +3,6 @@ module.exports = {
     return mongoose.map((mongoose) => mongoose.toObject());
   },
   mongooseToObject: (mongoose) => {
-    return mongoose ? mongoose.toOject() : mongoose;
+    return mongoose ? mongoose.toObject() : mongoose;
   },
 };

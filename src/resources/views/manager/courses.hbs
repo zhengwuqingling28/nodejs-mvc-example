@@ -1,0 +1,86 @@
+<div class="mt-4">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">CreatedAt</th>
+        <th scope="col">ModifiedAt</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each courses}}
+        <tr>
+          <th scope="row">{{sum @index 1}}</th>
+          <td>{{this.name}}</td>
+          <td>{{this.description}}</td>
+          <td>{{this.createdAt}}</td>
+          <td>{{this.modifiedAt}}</td>
+          <td>
+            <a
+              class="btn btn-link"
+              href="/manager/stored/{{this._id}}/edit"
+            >
+              <button class="btn btn-primary">
+                Update
+              </button>
+            </a>
+          </td>
+          <td>
+            <div class="mt-2">
+              <button 
+                type="button" 
+                class="btn btn-danger" 
+                data-bs-toggle="modal" 
+                data-id="{{this._id}}" 
+                data-bs-target="#deleteCourseModal"
+              >
+                Delete
+             </button>
+            </div>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <!-- Modal -->
+ <div class="modal fade" id="deleteCourseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">Delete Blog</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        You want to delete this blog?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="btn-delete-course">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- delete hidden form  --}}
+
+<form name="delete-course-form" method="POST" action="/manager/courses/{{course._id}}/delete?_method=DELETE"></form>
+
+<script>
+const deleteCourseModal = document.getElementById('deleteCourseModal')
+if (deleteCourseModal) {
+  const deleteCourseForm = document.forms["delete-course-form"]
+  deleteCourseModal.addEventListener('show.bs.modal', event => {
+    const button = event.relatedTarget
+    const idRecipient = button.getAttribute('data-id')
+    var btnDelete = document.querySelector("#btn-delete-course")
+    btnDelete.addEventListener('click', () => {
+      console.log("delete blog _id :" + idRecipient)
+      deleteCourseForm.action = `/manager/courses/${idRecipient}/delete?_method=DELETE`
+      deleteCourseForm.submit()
+    }) 
+  })
+}
+
+</script>

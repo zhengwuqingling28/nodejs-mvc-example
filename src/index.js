@@ -1,6 +1,7 @@
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
+const methodOverride = require("method-override");
 const { engine } = require("express-handlebars");
 
 const route = require("./routes");
@@ -12,6 +13,13 @@ db.connect();
 const app = express();
 const port = 3000;
 
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+app.use(express.json());
+
 app.use(express.static(path.join(__dirname, "public")));
 
 // HTTP logger
@@ -22,10 +30,15 @@ app.use(morgan("combined"));
 // app.use(express.json()); xử lý dữ liệu từ form submit bằng XMLHttpRequest, fetch, axios, AJAX
 
 // Template engine
+app.use(methodOverride("_method"));
+
 app.engine(
   "hbs",
   engine({
     extname: ".hbs",
+    helpers: {
+      sum: (a, b) => a + b,
+    },
   })
 );
 app.set("view engine", "hbs");
