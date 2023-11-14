@@ -1,23 +1,25 @@
 # Expressjs-mvc-mongoose-handlerbars-example
 
-Using express-handlerbars, mongoose, morgan, nodemon, node-sass, and bootstrap.
+Using expressjs, handlerbars, mongoose, morgan, nodemon, node-sass, and bootstrap.
 
 ## 🚀 Quick start
 
 1.  **Step 1.**
     Clone the project
     ```sh
-    # clone the project to your local computer
     git clone https://github.com/zhengwuqingling28/nodejs-mvc-example.git
     ```
 1.  **Step 2.**
+    Install node_modules
+    ```sh
+    npm i
+    ```
+ 1. **Step 3.**
     Run backend
     ```sh
-    # go to backend
-    npm i
     nodemon ./src/index.js
     ```
-1.  **Step 3.**
+1.  **Step 4.**
     Complite scss to css
     ```sh
     # Complite scss to css
